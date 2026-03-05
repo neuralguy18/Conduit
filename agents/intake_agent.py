@@ -28,14 +28,9 @@ Output state fields added:
 """
 
 import os
-import sys
 import json
 import time
 from typing import Optional
-
-# Ensure project root is importable when running as:
-# python agents/intake_agent.py
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -125,7 +120,7 @@ Urgency levels:
 - NEEDS_CLARIFICATION (complaint too vague)"""
 
     # User prompt — the actual classification request
-    user_prompt = f"""Classify this vehicle complaint and identify required parts.
+    user_prompt = """Classify this vehicle complaint and identify required parts.
 
 VEHICLE:
 - Make/Model: {vehicle['make']} {vehicle['model']} {vehicle['year']}
@@ -229,7 +224,7 @@ def validate_intake_output(
     }
     if agent_output.get("fault_classification") not in allowed_categories:
         return False, (
-            f"Invalid fault category: "
+            "Invalid fault category: "
             f"{agent_output.get('fault_classification')}"
         )
 
@@ -294,7 +289,7 @@ def write_classification_to_db(
 
         return False
 
-    except Exception as e:
+    except Exception:
         return False
 
 
@@ -332,7 +327,7 @@ def run_intake_agent(state: dict) -> dict:
         if not vehicle:
             raise ValueError(
                 f"VIN {vin} not found in vehicle catalog. "
-                f"Vehicle may not be registered in the system."
+                "Vehicle may not be registered in the system."
             )
 
         # ── STEP 2: LOOK UP CUSTOMER ───────────────────────────────────────
@@ -446,7 +441,7 @@ def run_intake_agent(state: dict) -> dict:
             "current_agent":            "intake_agent",
         }
 
-    except Exception as e:
+    except Exception:
         latency_ms = int((time.time() - start_time) * 1000)
 
         log_agent_error(
@@ -499,7 +494,7 @@ if __name__ == "__main__":
         "customer_id":    None,
     }
 
-    print(f"\nRunning Intake Agent test...")
+    print("\nRunning Intake Agent test...")
     print(f"VIN: {test_state['vin']}")
     print(f"Vehicle: {sample_vehicle.year} {sample_vehicle.make} "
           f"{sample_vehicle.model}")
@@ -516,7 +511,7 @@ if __name__ == "__main__":
         print(f"Confidence:           {result['intake_confidence']}")
         print(f"Recall Flags:         {len(result['recall_flags'])} active")
         print(f"EV Safety Protocol:   {result['ev_safety_protocol']}")
-        print(f"\nRetrieved Parts from Pinecone:")
+        print("\nRetrieved Parts from Pinecone:")
         for p in result.get("retrieved_parts_context", []):
             print(f"  [{p['similarity_score']}] "
                   f"{p['part_number']} — {p['description'][:60]}")

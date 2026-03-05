@@ -92,7 +92,7 @@ def get_auto_approval_reason(state: dict) -> str:
 
     quote_total = state.get("quote", {}).get("total_amount", 0)
     return (
-        f"Within auto-approve threshold "
+        "Within auto-approve threshold "
         f"(₹{quote_total:,.0f} < ₹{AUTO_APPROVE_THRESHOLD:,.0f})"
     )
 
@@ -202,7 +202,7 @@ def confirm_parts_reservations(
             db.commit()
         return True
 
-    except Exception as e:
+    except Exception:
         return False
 
 
@@ -415,7 +415,7 @@ def run_transaction_agent(state: dict) -> dict:
             "error":              None,
         }
 
-    except Exception as e:
+    except Exception:
         latency_ms = int((time.time() - start_time) * 1000)
 
         log_agent_error(

@@ -109,7 +109,7 @@ def validate_quote_output(quote: dict, ro_id: str) -> tuple:
 
     if abs(calculated_subtotal - stated_subtotal) > 1:
         return False, (
-            f"Quote arithmetic mismatch: "
+            "Quote arithmetic mismatch: "
             f"calculated {calculated_subtotal} "
             f"vs stated {stated_subtotal}"
         )
@@ -128,7 +128,7 @@ def validate_quote_output(quote: dict, ro_id: str) -> tuple:
 
     if abs(stated_gst - calculated_gst) > 1:
         return False, (
-            f"GST calculation error: "
+            "GST calculation error: "
             f"calculated {calculated_gst} "
             f"vs stated {stated_gst}"
         )
@@ -207,7 +207,7 @@ def run_quoting_agent(state: dict) -> dict:
         ro_id=ro_id,
         input_summary={
             "reserved_parts": len(state.get("reserved_parts", [])),
-            "customer_tier":  (state.get("customer_details") or {}).get(
+            "customer_tier":  state.get("customer_details", {}).get(
                                   "loyalty_tier_name", "Walk-in"
                               ),
             "fault":          state.get("fault_classification"),
@@ -332,7 +332,7 @@ def run_quoting_agent(state: dict) -> dict:
             "error":            None,
         }
 
-    except Exception as e:
+    except Exception:
         latency_ms = int((time.time() - start_time) * 1000)
 
         log_agent_error(

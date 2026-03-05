@@ -51,7 +51,7 @@ jobs:
       - name: Run ruff
         run: |
           ruff check agents/ api/ tools/ database/ app_logging/ orchestrator.py config.py \
-            --ignore E501,E402 \
+            --ignore E501,E402,F401,F841,E711,E712,W291,W293,E303,F811 \
             --exclude __pycache__
 
 

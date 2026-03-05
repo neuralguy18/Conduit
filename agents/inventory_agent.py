@@ -28,17 +28,6 @@ Output state fields added:
     - error                 (if something went wrong)
 """
 
-
-import os
-import sys
-
-# Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__)
-)))
-
-
-
 import time
 from typing import List, Dict, Optional
 
@@ -89,7 +78,7 @@ def validate_inventory_output(
     for part in agent_output.get("reserved_parts", []):
         if part.get("qty_reserved", 0) <= 0:
             return False, (
-                f"Invalid reservation quantity for "
+                "Invalid reservation quantity for "
                 f"{part.get('part_number')}: "
                 f"{part.get('qty_reserved')}"
             )
@@ -381,7 +370,7 @@ def run_inventory_agent(state: dict) -> dict:
             "error":             None,
         }
 
-    except Exception as e:
+    except Exception:
         latency_ms = int((time.time() - start_time) * 1000)
 
         log_agent_error(
@@ -442,7 +431,7 @@ if __name__ == "__main__":
         print(f"Unavailable Parts: {result['unavailable_parts']}")
         print(f"Reorder Needed:    {result['reorder_needed']}")
 
-        print(f"\nDetailed Results:")
+        print("\nDetailed Results:")
         for part_num, details in result["inventory_check"].items():
             print(
                 f"  {part_num}: "
