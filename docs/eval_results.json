@@ -1,0 +1,66 @@
+{
+  "run_at": "2026-03-10T14:14:29.506635Z",
+  "total_elapsed": 82.6,
+  "all_passed": true,
+  "passed": 7,
+  "failed": 0,
+  "total": 7,
+  "modules": [
+    {
+      "label": "Intake Guardrails",
+      "module": "guardrails/intake_guardrails.py",
+      "cost": "$0.00",
+      "passed": true,
+      "elapsed_s": 21.3,
+      "returncode": 0
+    },
+    {
+      "label": "Quoting Guardrails",
+      "module": "guardrails/quoting_guardrails.py",
+      "cost": "$0.00",
+      "passed": true,
+      "elapsed_s": 11.6,
+      "returncode": 0
+    },
+    {
+      "label": "Output Validators",
+      "module": "guardrails/output_validator.py",
+      "cost": "$0.00",
+      "passed": true,
+      "elapsed_s": 9.0,
+      "returncode": 0
+    },
+    {
+      "label": "Inventory Agent",
+      "module": "component/eval_inventory_agent.py",
+      "cost": "$0.00",
+      "passed": true,
+      "elapsed_s": 9.4,
+      "returncode": 0
+    },
+    {
+      "label": "Quoting Agent",
+      "module": "component/eval_quoting_agent.py",
+      "cost": "$0.00",
+      "passed": true,
+      "elapsed_s": 10.5,
+      "returncode": 0
+    },
+    {
+      "label": "Transaction Agent",
+      "module": "component/eval_transaction_agent.py",
+      "cost": "$0.00",
+      "passed": true,
+      "elapsed_s": 9.0,
+      "returncode": 0
+    },
+    {
+      "label": "Replenishment Agent",
+      "module": "component/eval_replenishment_agent.py",
+      "cost": "$0.00",
+      "passed": true,
+      "elapsed_s": 11.7,
+      "returncode": 0
+    }
+  ]
+}

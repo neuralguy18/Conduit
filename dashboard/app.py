@@ -376,6 +376,7 @@ NAV_ITEMS = [
     ("Quotes",           "🧾", "Quotes"),
     ("Purchase Orders",  "🚚", "Purchase Orders"),
     ("Pending Approval", "⏳", "Pending Approval"),
+    ("Evals",            "🧪", "Evals"),
 ]
 
 with st.sidebar:
@@ -502,3 +503,7 @@ elif page == "Purchase Orders":
 elif page == "Pending Approval":
     from dashboard.components.pending_approval import render_pending_approval
     render_pending_approval()
+
+elif page == "Evals":
+    from dashboard.components.evals_page import render_evals
+    render_evals()

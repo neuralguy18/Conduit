@@ -186,7 +186,7 @@ def save_quote_to_db(
 
         return quote_id
 
-    except Exception as e:
+    except Exception:
         raise Exception(f"Failed to save quote: {e}")
 
 

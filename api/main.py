@@ -40,7 +40,7 @@ from app_logging.logger import get_logger
 from database.connection import check_db_connection, get_table_counts
 from config import validate_required_config, ENVIRONMENT
 
-from api.routes import repair_orders, inventory, quotes, purchase_orders, dashboard
+from api.routes import repair_orders, inventory, quotes, purchase_orders, dashboard, evals
 
 logger = get_logger("conduit.api")
 
@@ -75,6 +75,7 @@ app.include_router(inventory.router,       prefix="/api")
 app.include_router(quotes.router,          prefix="/api")
 app.include_router(purchase_orders.router, prefix="/api")
 app.include_router(dashboard.router,       prefix="/api")
+app.include_router(evals.router,           prefix="/api")
 
 # ── HEALTH CHECK ──────────────────────────────────────────────────────────────
 
@@ -93,7 +94,7 @@ def health_check():
             "database":    "connected",
             "tables":      counts,
         }
-    except Exception as e:
+    except Exception:
         return {
             "status":   "unhealthy",
             "database": "disconnected",
