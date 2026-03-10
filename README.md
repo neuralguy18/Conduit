@@ -480,5 +480,5 @@ Built by **Pravir Sinha**
 ---
 
 <div align="center">
-<sub>Built with LangGraph, FastAPI, and way too much GST math</sub>
+<sub>Built with LangGraph, FastAPI, and Streamlit math</sub>
 </div>
