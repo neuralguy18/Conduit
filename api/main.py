@@ -40,7 +40,7 @@ from app_logging.logger import get_logger
 from database.connection import check_db_connection, get_table_counts
 from config import validate_required_config, ENVIRONMENT
 
-from api.routes import repair_orders, inventory, quotes, purchase_orders, dashboard, evals
+from api.routes import repair_orders, inventory, quotes, purchase_orders, dashboard, evals_route as evals
 
 logger = get_logger("conduit.api")
 
